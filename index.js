@@ -19,13 +19,13 @@ function getImagesPages(counterPage) {
     return;
   }
 
-  const urlPagina = getBook('Questionnaire') + '&page=leaf' + counterPage;
+  const urlPagina = 'https://ia601505.us.archive.org/BookReader/BookReaderImages.php?zip=/14/items/questionnairedes0000oppe_i2t6/questionnairedes0000oppe_i2t6_jp2.zip&file=questionnairedes0000oppe_i2t6_jp2/questionnairedes0000oppe_i2t6_' + getPadLength(counterPage) + '.jp2&scale=1&rotate=0';
 
   console.log(urlPagina)
 
   createLinkForDownload(urlPagina, counterPage);
-  setTimeout(() => {}, 5000);
-  getImagesPages(++counterPage);
+  setTimeout(() => getImagesPages(++counterPage), 5000);
+  // getImagesPages(++counterPage);
 }
 
 /**
@@ -40,11 +40,12 @@ function getPadLength(index) {
  */
 function createLinkForDownload(img, counterPage) {
   let link = document.createElement('a');
+  document.body.appendChild(link);
   link.download = 'Page_' + counterPage + '.jpg';
   link.href = img;
   link.type = 'image/jpeg';
-  document.body.appendChild(link);
   link.dispatchEvent(new MouseEvent('click'));
+  document.body.removeChild(link);
 }
 
 getImagesPages(page)
