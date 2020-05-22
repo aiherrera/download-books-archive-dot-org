@@ -8,8 +8,9 @@
  * @website https://smallpdf.com/merge-pdf to merge pdf pages after downloaded for free
  */
 import * as $ from 'jquery';
+import getBook from './urls.js';
 
-var pageLimit = 30;
+var pageLimit = 2;
 var page = 1;
 
 function getImagesPages(counterPage) {
@@ -18,7 +19,7 @@ function getImagesPages(counterPage) {
     return;
   }
 
-  const urlPagina = "https://ia800107.us.archive.org/BookReader/BookReaderImages.php?zip=/32/items/sociolinguisticp00will/sociolinguisticp00will_jp2.zip&file=sociolinguisticp00will_jp2/sociolinguisticp00will_" + getPadLength(counterPage) + ".jp2";
+  const urlPagina = getBook('Questionnaire') + '&page=leaf' + counterPage;
 
   console.log(urlPagina)
 
